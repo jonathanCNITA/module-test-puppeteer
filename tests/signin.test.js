@@ -1,11 +1,13 @@
-const timeout = 25000
+const timeout = 30000
 
 // test d'un raccourcisseur d'URL
-describe("Shorten Anonymous", () => {
+describe("sign in", () => {
     let page
-    const numTest = '32';
-    const name = `Blob${numTest}`;
-    const mail = `blob${numTest}@test.com`
+    let numTest = Date.now();
+    // let name = `Blob${numTest}`;
+    // let mail = `blob${numTest}@test.com`
+    let name = 'Blob8000'
+    let mail = 'blob8000@test.com'
 
     // parcours client sign in
     test('sign in', async () => {
@@ -37,9 +39,10 @@ describe("Shorten Anonymous", () => {
         await page.waitForSelector("[action='login']")
         await page.screenshot({path: './tests/img/shortenA-5.png'})
         //-- login form     
-        await page.waitForSelector("form")
+        await page.waitForSelector("input")
+        
         await page.evaluate( () => {
-            document.querySelectorAll( 'input' )[4].value = 'Blob32';
+            document.querySelectorAll( 'input' )[4].value = 'Blob8000';
         });
         await page.screenshot({path: './tests/img/shortenA-6.png'})
         await page.evaluate( () => {
@@ -55,7 +58,6 @@ describe("Shorten Anonymous", () => {
         await page.screenshot({path: './tests/img/shortenA-8.png'})
         //-- final test
         const html = await page.$eval('body', e => e.innerHTML)
-        // vérifier que dans cet élément Body on trouve "Polr du campus"
         await page.screenshot({path: './tests/img/logged.png'});
         expect(html).toContain(name)
     }, timeout)

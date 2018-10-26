@@ -6,14 +6,14 @@ describe("custom", () => {
     // parcours client Custom URL
     test('custompublic', async () => {
         let shortCustomName = String(Date.now());
-        await page.goto('http://polr.campus-grenoble.fr')
+        await page.goto('http://polr.campus-grenoble.fr');
         await page.evaluate( () => {
             Array
                 .from( document.querySelectorAll( 'a' ) )
                 .filter( el => el.textContent === 'Link Options' )[0].click();
         });
         await page.screenshot({path: './tests/img/custom1.png'});
-        await page.type( '.form-control.custom-url-field', shortCustomName)
+        await page.type( '.form-control.custom-url-field', shortCustomName);
 
         await page.screenshot({path: './tests/img/custom2.png'});
         await page.evaluate( () => {
@@ -29,10 +29,10 @@ describe("custom", () => {
         await page.evaluate( () => {
             document.querySelector( '#shorten' ).click();
         });
-        await page.waitForSelector("#short_url")
+        await page.waitForSelector("#short_url");
         await page.screenshot({path: './tests/img/custom5.png'});
-        const html = await page.$eval('body', e => e.innerHTML)
-        expect(html).toContain("http://polr.campus-grenoble.fr/" + shortCustomName)
+        const html = await page.$eval('body', e => e.innerHTML);
+        expect(html).toContain("http://polr.campus-grenoble.fr/" + shortCustomName);
         
     }, timeout)
 

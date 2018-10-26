@@ -19,32 +19,32 @@ describe("sign in", () => {
                 .from( document.querySelectorAll( '#navbar li a' ) )
                 .filter( el => el.textContent === 'Sign Up' )[0].click();
         });
-        await page.screenshot({path: './tests/img/shortenA-0.png'})
+        await page.screenshot({path: './tests/img/shortenA-0.png'});
 
-        await page.waitForSelector("form[action='/signup']")
+        await page.waitForSelector("form[action='/signup']");
         await page.type("form[action='/signup'] input[name='username']", name);
         await page.screenshot({path: './tests/img/shortenA-1.png'});
       
         await page.type("form[action='/signup'] input[name='password']", '123456');
-        await page.screenshot({path: './tests/img/shortenA-2.png'})
+        await page.screenshot({path: './tests/img/shortenA-2.png'});
         
         await page.type("form[action='/signup'] input[name='email']", mail);
-        await page.screenshot({path: './tests/img/shortenA-3.png'})
+        await page.screenshot({path: './tests/img/shortenA-3.png'});
         
         await page.evaluate( () => {
             Array
                 .from( document.querySelectorAll( 'input' ) )
                 .filter( el => el.defaultValue === 'Register' )[0].click();
         });
-        await page.screenshot({path: './tests/img/shortenA-4.png'})
-        await page.waitForSelector("[action='login']")
-        await page.screenshot({path: './tests/img/shortenA-5.png'})
+        await page.screenshot({path: './tests/img/shortenA-4.png'});
+        await page.waitForSelector("[action='login']");
+        await page.screenshot({path: './tests/img/shortenA-5.png'});
         //-- login form     
-        await page.waitForSelector("input")
+        await page.waitForSelector("input");
         
-        await page.type("input[name=username].form-control.login-field", name)
+        await page.type("input[name=username].form-control.login-field", name);
        
-        await page.screenshot({path: './tests/img/shortenA-6.png'})
+        await page.screenshot({path: './tests/img/shortenA-6.png'});
         await page.evaluate( () => {
             document.querySelectorAll( 'input' )[5].value = '123456';
         });
@@ -53,13 +53,13 @@ describe("sign in", () => {
                 .from( document.querySelectorAll( 'input' ) )
                 .filter( el => el.defaultValue === 'Login' )[0].click();
         });
-        await page.screenshot({path: './tests/img/shortenA-7.png'})
-        await page.waitForSelector(".dropdown-toggle.login-name")
-        await page.screenshot({path: './tests/img/shortenA-8.png'})
+        await page.screenshot({path: './tests/img/shortenA-7.png'});
+        await page.waitForSelector(".dropdown-toggle.login-name");
+        await page.screenshot({path: './tests/img/shortenA-8.png'});
         //-- final test
-        const html = await page.$eval('body', e => e.innerHTML)
+        const html = await page.$eval('body', e => e.innerHTML);
         await page.screenshot({path: './tests/img/logged.png'});
-        expect(html).toContain(name)
+        expect(html).toContain(name);
     }, timeout)
 
     // cette fonction est lancée avant chaque test de cette

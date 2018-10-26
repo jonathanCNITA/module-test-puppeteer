@@ -1,14 +1,15 @@
 const timeout = 30000
 
+
 // test d'un raccourcisseur d'URL
 describe("sign in", () => {
     let page
     let numTest = Date.now();
-    // let name = `Blob${numTest}`;
-    // let mail = `blob${numTest}@test.com`
-    let name = 'Blob8000'
-    let mail = 'blob8000@test.com'
-
+    let name = `Blob${numTest}`;
+    let mail = `blob${numTest}@test.com`
+    // let name = 'Blob15000'
+    // let mail = 'blob15000@test.com'
+    
     // parcours client sign in
     test('sign in', async () => {
         await page.goto('http://polr.campus-grenoble.fr')
@@ -41,9 +42,8 @@ describe("sign in", () => {
         //-- login form     
         await page.waitForSelector("input")
         
-        await page.evaluate( () => {
-            document.querySelectorAll( 'input' )[4].value = 'Blob8000';
-        });
+        await page.type("input[name=username].form-control.login-field", name)
+       
         await page.screenshot({path: './tests/img/shortenA-6.png'})
         await page.evaluate( () => {
             document.querySelectorAll( 'input' )[5].value = '123456';

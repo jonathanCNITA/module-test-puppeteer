@@ -3,17 +3,17 @@ const timeout = 30000
 
 // test d'un raccourcisseur d'URL
 describe("sign in", () => {
-    let page
+    let page;
     let numTest = Date.now();
     let name = `Blob${numTest}`;
-    let mail = `blob${numTest}@test.com`
+    let mail = `blob${numTest}@test.com`;
     // let name = 'Blob15000'
     // let mail = 'blob15000@test.com'
     
     // parcours client sign in
     test('sign in', async () => {
-        await page.goto('http://polr.campus-grenoble.fr')
-        await page.waitForSelector('#navbar li a')
+        await page.goto('http://polr.campus-grenoble.fr');
+        await page.waitForSelector('.navbar.navbar-default.navbar-fixed-top')
         await page.evaluate( () => {
             Array
                 .from( document.querySelectorAll( '#navbar li a' ) )
@@ -21,14 +21,14 @@ describe("sign in", () => {
         });
         await page.screenshot({path: './tests/img/shortenA-0.png'})
 
-        await page.waitForSelector("form")
-        await page.type("input.form-control.form-field", name);
-        await page.screenshot({path: './tests/img/shortenA-1.png'})
+        await page.waitForSelector("form[action='/signup']")
+        await page.type("form[action='/signup'] input[name='username']", name);
+        await page.screenshot({path: './tests/img/shortenA-1.png'});
       
-        await page.type("[name='password'].form-control.form-field", '123456');
+        await page.type("form[action='/signup'] input[name='password']", '123456');
         await page.screenshot({path: './tests/img/shortenA-2.png'})
         
-        await page.type("[name='email']", mail);
+        await page.type("form[action='/signup'] input[name='email']", mail);
         await page.screenshot({path: './tests/img/shortenA-3.png'})
         
         await page.evaluate( () => {

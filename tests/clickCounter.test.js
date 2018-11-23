@@ -36,8 +36,6 @@ describe("click counter", () => {
         await page.reload();
         await page.screenshot({path: './tests/img/clickTest/6.png'});
         const click2 = await page.$eval('.odd td:nth-child(3)', e => e.innerHTML);
-        console.log('click: ', click);
-        console.log('click: ', click2);
         expect(click2).toContain(String(clickValueExpected));        
     }, timeout)
 
